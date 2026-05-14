@@ -1,5 +1,3 @@
-// src/components/layout/Navbar.tsx
-
 export default function Navbar() {
   return (
     <nav style={{
@@ -15,42 +13,16 @@ export default function Navbar() {
       zIndex: 50,
     }}>
 
-      {/* ── LOGO ──
-        Your Figma logo goes here.
-        Step 1: In Figma, click your logo group
-        Step 2: Right panel bottom → Export → PNG 2x → Export
-        Step 3: In VS Code, right-click public folder → New Folder → name it "images"
-        Step 4: Drag logo file into public/images/ folder
-        Step 5: Rename it logo.png
-        It will appear automatically — no code change needed.
-        
-        Until then, the text logo shows as fallback.
-      */}
-      <div style={{ flexShrink: 0, display: "flex", alignItems: "center", gap: "8px" }}>
+      {/* LOGO — only your image, no fallback */}
+      <div style={{ flexShrink: 0 }}>
         <img
           src="/images/logo.png"
           alt="YatVenture"
-          style={{ height: "36px", width: "auto", display: "block" }}
-          onError={(e) => { e.currentTarget.style.display = "none" }}
+          style={{ height: "52px", width: "auto", display: "block" }}
         />
-        {/* Text fallback — always visible, sits next to image */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <div style={{
-            width: "34px", height: "34px",
-            background: "#E8593C", borderRadius: "10px",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <svg width="20" height="18" viewBox="0 0 22 20" fill="none">
-              <rect x="2" y="6" width="18" height="13" rx="2" fill="white" fillOpacity="0.95"/>
-              <path d="M7 6V5a4 4 0 0 1 8 0v1" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-              <rect x="9" y="10" width="4" height="3" rx="1" fill="#E8593C"/>
-            </svg>
-          </div>
-          <span style={{ fontSize: "17px", fontWeight: "600", color: "#111" }}>atventure</span>
-        </div>
       </div>
 
-      {/* ── SEARCH BAR — centered ── */}
+      {/* SEARCH BAR */}
       <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
         <div style={{
           display: "flex", alignItems: "center", gap: "10px",
@@ -76,7 +48,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ── AUTH BUTTONS — same size ── */}
+      {/* AUTH BUTTONS */}
       <div style={{ flexShrink: 0, display: "flex", gap: "10px", alignItems: "center" }}>
         <button style={{
           width: "100px", height: "38px",
