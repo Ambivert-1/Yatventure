@@ -31,7 +31,7 @@ export default function Navbar() {
           borderRadius: "8px",
           background: "#fff",
           width: "100%",
-          maxWidth: "560px",
+          maxWidth: "750px",
         }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2">
             <circle cx="11" cy="11" r="8"/>

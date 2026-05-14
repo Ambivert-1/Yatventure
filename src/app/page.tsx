@@ -8,13 +8,13 @@ import PostCard from "@/components/feed/PostCard"
 import DestinationCard from "@/components/feed/DestinationCard"
 
 const destinations = [
-  { name: "Peace Pagoda",  district: "Pokhara",    img: "https://images.unsplash.com/photo-1605131570707-02b7020c5c1a?w=300&h=300&fit=crop" },
-  { name: "Namche Bajar",  district: "Solukhumbu", img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=300&h=300&fit=crop" },
-  { name: "Gosaikunda",    district: "Rasuwa",     img: "https://images.unsplash.com/photo-1571536802807-30451e3955d8?w=300&h=300&fit=crop" },
-  { name: "Bouddha",       district: "Kathmandu",  img: "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=300&h=300&fit=crop" },
-  { name: "Muktinath",     district: "Mustang",    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=300&fit=crop" },
-  { name: "Rara Lake",     district: "Mugu",       img: "https://images.unsplash.com/photo-1585016495481-91613bde4a72?w=300&h=300&fit=crop" },
-  { name: "Everest Base",  district: "Solukhumbu", img: "https://images.unsplash.com/photo-1516208813382-f4f8f86dc902?w=300&h=300&fit=crop" },
+  { name: "Peace Pagoda",  district: "Pokhara",    img: "https://images.unsplash.com/photo-1522376382758-57cc8c505cdb?q=80&w=1245&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Namche Bajar",  district: "Solukhumbu", img: "https://images.unsplash.com/photo-1754464431360-ad4f95d5e4c8?q=80&w=1556&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Gosaikunda",    district: "Rasuwa",     img: "https://images.unsplash.com/photo-1713670959170-176c7d31b93f?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Bouddha",       district: "Kathmandu",  img: "https://images.unsplash.com/photo-1605640840605-14ac1855827b?q=80&w=300&h=300&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Muktinath",     district: "Mustang",    img: "https://images.unsplash.com/photo-1540961286473-8ad1368dc1bd?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Rara Lake",     district: "Mugu",       img: "https://images.unsplash.com/photo-1631873505000-c9e468448040?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Everest Base",  district: "Solukhumbu", img: "https://images.unsplash.com/photo-1536308998534-ca7106a1d1f1?q=80&w=1173&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
 ]
 
 const posts = [
@@ -22,7 +22,7 @@ const posts = [
     id: 1, type: "post",
     author: "Bidhya Rai", date: "12 April, 2024",
     body: "It's not just about the destination. It's about the early morning sunrises.",
-    img: "https://images.unsplash.com/photo-1571536802807-30451e3955d8?w=900&h=500&fit=crop",
+    img: "https://images.unsplash.com/photo-1571536802807-30451e3955d8?q=80&w=900&h=500&auto=format&fit=crop",
     likes: 20, comments: 2, shares: 3,
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop",
   },

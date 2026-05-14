@@ -2,9 +2,9 @@
 import { useState } from "react"
 
 const popularPlaces = [
-  { name: "Pokhara",   img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=60&h=60&fit=crop" },
-  { name: "Kathmandu", img: "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=60&h=60&fit=crop" },
-  { name: "Chitwan",   img: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=60&h=60&fit=crop" },
+  { name: "Pokhara",   img: "https://images.unsplash.com/photo-1562462181-b228e3cff9ad?q=80&w=1310&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Kathmandu", img: "https://images.unsplash.com/photo-1605640840605-14ac1855827b?q=80&w=1333&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "Chitwan",   img: "https://images.unsplash.com/photo-1659343295253-be5b4458073a?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
 ]
 
 const navItems = [
