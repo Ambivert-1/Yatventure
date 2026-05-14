@@ -2,14 +2,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { createBrowserClient } from "@supabase/ssr"
-
-function createClient() {
-  return createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
-}
+import { createClient } from "@/lib/supabase/client"
 
 export default function SignupPage() {
   const [name, setName] = useState("")
@@ -75,6 +68,21 @@ export default function SignupPage() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#f9fafb", display: "flex", alignItems: "center", justifyContent: "center" }}>
+
+      {/* Back arrow */}
+      <Link href="/" style={{
+        position: "fixed", top: "20px", left: "20px",
+        width: "38px", height: "38px",
+        background: "#fff", border: "1px solid #e5e7eb",
+        borderRadius: "50%", display: "flex",
+        alignItems: "center", justifyContent: "center",
+        textDecoration: "none", boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+      }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#374151" strokeWidth="2.5">
+          <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </Link>
+
       <div style={{ background: "#fff", border: "1px solid #e5e7eb", borderRadius: "16px", padding: "40px", width: "100%", maxWidth: "400px" }}>
 
         {/* Logo */}

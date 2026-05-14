@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function Navbar() {
   return (
     <nav style={{
@@ -13,14 +15,14 @@ export default function Navbar() {
       zIndex: 50,
     }}>
 
-      {/* LOGO — only your image, no fallback */}
-      <div style={{ flexShrink: 0 }}>
+      {/* LOGO — clicking goes to home */}
+      <Link href="/">
         <img
           src="/images/logo.png"
           alt="YatVenture"
-          style={{ height: "52px", width: "auto", display: "block" }}
+          style={{ height: "52px", width: "auto", display: "block", cursor: "pointer" }}
         />
-      </div>
+      </Link>
 
       {/* SEARCH BAR */}
       <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
@@ -31,7 +33,7 @@ export default function Navbar() {
           borderRadius: "8px",
           background: "#fff",
           width: "100%",
-          maxWidth: "750px",
+          maxWidth: "560px",
         }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2">
             <circle cx="11" cy="11" r="8"/>
@@ -50,18 +52,22 @@ export default function Navbar() {
 
       {/* AUTH BUTTONS */}
       <div style={{ flexShrink: 0, display: "flex", gap: "10px", alignItems: "center" }}>
-        <button style={{
-          width: "100px", height: "38px",
-          border: "1.5px solid #E8593C", borderRadius: "8px",
-          background: "transparent", color: "#E8593C",
-          fontSize: "14px", fontWeight: "500", cursor: "pointer",
-        }}>Login</button>
-        <button style={{
-          width: "100px", height: "38px",
-          border: "1.5px solid #E8593C", borderRadius: "8px",
-          background: "#E8593C", color: "white",
-          fontSize: "14px", fontWeight: "600", cursor: "pointer",
-        }}>Sign Up</button>
+        <Link href="/login">
+          <button style={{
+            width: "100px", height: "38px",
+            border: "1.5px solid #E8593C", borderRadius: "8px",
+            background: "transparent", color: "#E8593C",
+            fontSize: "14px", fontWeight: "500", cursor: "pointer",
+          }}>Login</button>
+        </Link>
+        <Link href="/signup">
+          <button style={{
+            width: "100px", height: "38px",
+            border: "1.5px solid #E8593C", borderRadius: "8px",
+            background: "#E8593C", color: "white",
+            fontSize: "14px", fontWeight: "600", cursor: "pointer",
+          }}>Sign Up</button>
+        </Link>
       </div>
     </nav>
   )
