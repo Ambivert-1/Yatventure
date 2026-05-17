@@ -30,7 +30,7 @@ export default function Sidebar() {
   const [active, setActive] = useState("Home")
 
   return (
-    <aside style={{
+    <aside suppressHydrationWarning style={{
       width: "230px",
       flexShrink: 0,
       borderRight: "1px solid #e5e7eb",

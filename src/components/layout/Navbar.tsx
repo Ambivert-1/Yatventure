@@ -6,15 +6,15 @@ import { useRouter } from "next/navigation"
 
 export default function Navbar() {
   const [user, setUser] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+  const [mounted, setMounted] = useState(false)
   const [query, setQuery] = useState("")
   const router = useRouter()
 
   useEffect(() => {
+    setMounted(true)
     const supabase = createClient()
     supabase.auth.getUser().then(({ data }) => {
       setUser(data.user)
-      setLoading(false)
     })
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
@@ -51,10 +51,14 @@ export default function Navbar() {
     }}>
 
       <Link href="/">
-        <img src="/images/logo.png" alt="YatVenture" style={{ height: "52px", width: "auto", display: "block", cursor: "pointer" }} />
+        <img
+          src="/images/logo.png"
+          alt="YatVenture"
+          style={{ height: "52px", width: "auto", display: "block", cursor: "pointer" }}
+        />
       </Link>
 
-      {/* SEARCH — now actually works */}
+      {/* SEARCH */}
       <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
         <form onSubmit={handleSearch} style={{ width: "100%", maxWidth: "560px" }}>
           <div style={{
@@ -76,22 +80,42 @@ export default function Navbar() {
         </form>
       </div>
 
+      {/* AUTH — fixed hydration */}
       <div style={{ flexShrink: 0, display: "flex", gap: "10px", alignItems: "center" }}>
-        {loading ? <div style={{ width: "100px" }} /> : user ? (
+        {!mounted ? (
+          // Same placeholder on both server and client — no mismatch
+          <div style={{ width: "220px", height: "38px" }} />
+        ) : user ? (
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
             <Link href="/dashboard" style={{ textDecoration: "none" }}>
-              <div style={{ width: "38px", height: "38px", borderRadius: "50%", background: "#E8593C", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "15px", fontWeight: "600", cursor: "pointer" }}>
+              <div style={{
+                width: "38px", height: "38px", borderRadius: "50%",
+                background: "#E8593C", color: "white",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "15px", fontWeight: "600", cursor: "pointer",
+              }}>
                 {user.email?.charAt(0).toUpperCase()}
               </div>
             </Link>
-            <button onClick={handleLogout} style={{ padding: "7px 16px", border: "1px solid #e5e7eb", borderRadius: "8px", background: "transparent", color: "#374151", fontSize: "14px", fontWeight: "500", cursor: "pointer" }}>
+            <button
+              onClick={handleLogout}
+              style={{ padding: "7px 16px", border: "1px solid #e5e7eb", borderRadius: "8px", background: "transparent", color: "#374151", fontSize: "14px", fontWeight: "500", cursor: "pointer" }}
+            >
               Logout
             </button>
           </div>
         ) : (
           <>
-            <Link href="/login"><button style={{ width: "100px", height: "38px", border: "1.5px solid #E8593C", borderRadius: "8px", background: "transparent", color: "#E8593C", fontSize: "14px", fontWeight: "500", cursor: "pointer" }}>Login</button></Link>
-            <Link href="/signup"><button style={{ width: "100px", height: "38px", border: "1.5px solid #E8593C", borderRadius: "8px", background: "#E8593C", color: "white", fontSize: "14px", fontWeight: "600", cursor: "pointer" }}>Sign Up</button></Link>
+            <Link href="/login">
+              <button style={{ width: "100px", height: "38px", border: "1.5px solid #E8593C", borderRadius: "8px", background: "transparent", color: "#E8593C", fontSize: "14px", fontWeight: "500", cursor: "pointer" }}>
+                Login
+              </button>
+            </Link>
+            <Link href="/signup">
+              <button style={{ width: "100px", height: "38px", border: "1.5px solid #E8593C", borderRadius: "8px", background: "#E8593C", color: "white", fontSize: "14px", fontWeight: "600", cursor: "pointer" }}>
+                Sign Up
+              </button>
+            </Link>
           </>
         )}
       </div>
