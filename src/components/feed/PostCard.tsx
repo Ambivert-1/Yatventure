@@ -1,14 +1,9 @@
 'use client'
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 
-// ─────────────────────────────────────────────────────────────
-// TYPE — defines what data this component expects to receive.
-// This is TypeScript. It means: whoever uses <PostCard />
-// MUST pass these props with these exact types.
-// string = text, number = number, boolean = true/false
-// ─────────────────────────────────────────────────────────────
 type Props = {
-  id: number
+  id: string
   type: string
   author: string
   date: string
@@ -20,7 +15,6 @@ type Props = {
   avatar: string
 }
 
-// Badge colors per post type — matches your design
 const badgeColors: Record<string, { bg: string; color: string }> = {
   post:      { bg: "#F1EFE8", color: "#5F5E5A" },
   itinerary: { bg: "#E1F5EE", color: "#0F6E56" },
@@ -29,31 +23,30 @@ const badgeColors: Record<string, { bg: string; color: string }> = {
   tip:       { bg: "#FAEEDA", color: "#633806" },
 }
 
-export default function PostCard({ type, author, date, body, img, likes, comments, shares, avatar }: Props) {
-  // Two pieces of state:
-  // liked — is the heart filled or not
-  // likeCount — the number shown next to the heart
+export default function PostCard({ id, type, author, date, body, img, likes, comments, shares, avatar }: Props) {
   const [liked, setLiked] = useState(false)
   const [likeCount, setLikeCount] = useState(likes)
-
+  const router = useRouter()
   const badge = badgeColors[type] || badgeColors.post
 
   const handleLike = () => {
-    // Toggle liked state and adjust count accordingly
     setLiked(!liked)
     setLikeCount(liked ? likeCount - 1 : likeCount + 1)
   }
 
   return (
-    <div style={{
-      background: "#fff",
-      border: "1px solid #e5e7eb",
-      borderRadius: "12px",
-      marginBottom: "16px",
-      overflow: "hidden", // clips the image to rounded corners
-    }}>
-
-      {/* ── POST HEADER: avatar + name + date + badge + menu ── */}
+    <div
+      onClick={() => router.push(`/posts/${id}`)}
+      style={{
+        background: "#fff",
+        border: "1px solid #e5e7eb",
+        borderRadius: "12px",
+        marginBottom: "16px",
+        overflow: "hidden",
+        cursor: "pointer",
+      }}
+    >
+      {/* Header */}
       <div style={{ display: "flex", alignItems: "center", gap: "10px", padding: "14px 16px 10px" }}>
         <img
           src={avatar} alt={author}
@@ -64,7 +57,6 @@ export default function PostCard({ type, author, date, body, img, likes, comment
           <p style={{ fontSize: "12px", color: "#9ca3af" }}>{date}</p>
         </div>
 
-        {/* Type badge — only shows if not a plain "post" */}
         {type !== "post" && (
           <span style={{
             fontSize: "11px", padding: "3px 10px", borderRadius: "99px",
@@ -74,8 +66,10 @@ export default function PostCard({ type, author, date, body, img, likes, comment
           </span>
         )}
 
-        {/* Three dot menu button */}
-        <button style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 8px", color: "#6b7280" }}>
+        <button
+          onClick={(e) => e.stopPropagation()}
+          style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 8px", color: "#6b7280" }}
+        >
           <svg width="4" height="16" viewBox="0 0 4 16" fill="currentColor">
             <circle cx="2" cy="2" r="1.5"/>
             <circle cx="2" cy="8" r="1.5"/>
@@ -84,12 +78,12 @@ export default function PostCard({ type, author, date, body, img, likes, comment
         </button>
       </div>
 
-      {/* ── POST BODY TEXT ── */}
+      {/* Body */}
       <p style={{ padding: "0 16px 12px", fontSize: "14px", color: "#374151", lineHeight: "1.55" }}>
         {body}
       </p>
 
-      {/* ── POST IMAGE — only renders if img exists ── */}
+      {/* Image */}
       {img && img !== "" && (
         <img
           src={img} alt="post photo"
@@ -97,19 +91,17 @@ export default function PostCard({ type, author, date, body, img, likes, comment
         />
       )}
 
-      {/* ── LIKES ROW — heart + count + comments + shares ── */}
+      {/* Likes row */}
       <div style={{
         display: "flex", alignItems: "center",
         justifyContent: "space-between",
         padding: "10px 16px",
       }}>
-        {/* Heart button + count — matches your Figma exactly */}
         <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
           <button
-            onClick={handleLike}
+            onClick={(e) => { e.stopPropagation(); handleLike() }}
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center" }}
           >
-            {/* Heart SVG — filled when liked, outline when not */}
             <svg width="20" height="20" viewBox="0 0 24 24"
               fill={liked ? "#E8593C" : "none"}
               stroke="#E8593C" strokeWidth="2"
@@ -120,19 +112,21 @@ export default function PostCard({ type, author, date, body, img, likes, comment
           <span style={{ fontSize: "14px", color: "#374151", fontWeight: "500" }}>{likeCount}</span>
         </div>
 
-        {/* Comments and shares — right side */}
         <div style={{ display: "flex", gap: "16px" }}>
           <span style={{ fontSize: "13px", color: "#9ca3af" }}>{comments} comments</span>
           <span style={{ fontSize: "13px", color: "#9ca3af" }}>{shares} shares</span>
         </div>
       </div>
 
-      {/* ── COMMENT INPUT — matches your Figma design ── */}
-      <div style={{
-        display: "flex", alignItems: "center", gap: "10px",
-        padding: "10px 16px 14px",
-        borderTop: "1px solid #f3f4f6",
-      }}>
+      {/* Comment input */}
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          display: "flex", alignItems: "center", gap: "10px",
+          padding: "10px 16px 14px",
+          borderTop: "1px solid #f3f4f6",
+        }}
+      >
         <img
           src={avatar} alt="you"
           style={{ width: "34px", height: "34px", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
@@ -142,7 +136,6 @@ export default function PostCard({ type, author, date, body, img, likes, comment
           border: "1px solid #e5e7eb", borderRadius: "99px",
           padding: "8px 14px", gap: "8px", background: "#fafafa",
         }}>
-          {/* Smiley face icon */}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="1.8">
             <circle cx="12" cy="12" r="10"/>
             <path d="M8 13s1.5 2 4 2 4-2 4-2"/>
@@ -150,11 +143,7 @@ export default function PostCard({ type, author, date, body, img, likes, comment
             <line x1="15" y1="9" x2="15.01" y2="9" strokeLinecap="round" strokeWidth="2.5"/>
           </svg>
           <span style={{ fontSize: "13px", color: "#9ca3af", flex: 1 }}>Add a comment...</span>
-          <button style={{
-            background: "none", border: "none",
-            fontSize: "13px", fontWeight: "600",
-            color: "#9ca3af", cursor: "pointer",
-          }}>
+          <button style={{ background: "none", border: "none", fontSize: "13px", fontWeight: "600", color: "#9ca3af", cursor: "pointer" }}>
             Comment
           </button>
         </div>
